@@ -1,5 +1,6 @@
 package br.unifor.audioAPI;
 
+import br.unifor.audioAPI.Musica;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Playlist
     private int id;
     private String nomePlaylist;
     private List<Musica> musicas = new ArrayList();
-    
+
     public String getNomePlaylist(String NomePlaylist) { return nomePlaylist; }
     
     public String setNomePlaylist(String NomePlaylist) { return nomePlaylist; }
