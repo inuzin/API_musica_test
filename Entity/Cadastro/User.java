@@ -8,27 +8,19 @@ public class User
     private String email;
     private String senha;
 
-    public int getId(int Id)
-    {
-        return id;
-    }
+    public int getId(int Id) { return id; }
+    
+    public int setId(int Id) { return Id; }
 
-    public String getNome(String Nome)
-    {
-        return nome;
-    }
+    public String getNome(String Nome) { return nome; }
+    
+    public String setNome(String Nome) { return Nome; }
 
-    public String getEmail(String Email)
-    {
-        return email;
-    }
+    public String getEmail(String Email) { return email; }
 
     public String setEmail(String Email) { return Email; }
 
-    public String getSenha(String Senha)
-    {
-        return senha;
-    }
+    public String getSenha(String Senha) { return senha; }
 
     public String setSenha(String Senha) { return Senha; }
 

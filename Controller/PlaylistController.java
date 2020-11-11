@@ -14,7 +14,7 @@ public class PlaylistController
 {
     List<Playlist> playlists = new ArrayList<Playlist>();
 
-    @GetMapping
+    @GetMapping(path = "/buscarPlaylist")
     public Playlist get(int id, String nome)
     {
         Playlist playlist = new Playlist(id, nome, (List<Musica>) new Musica(0,"null", "null", "null", 0));
@@ -22,19 +22,29 @@ public class PlaylistController
         return playlist;
     }
 
-    @PostMapping
-    public void post(@RequestBody int id, String nome)
+    @PostMapping(path = "/criarPlaylist")
+    public void post(@RequestBody String nomePlaylist)
     {
-
+       if(playlists.getId() == null)
+       {
+          playlists.setId(1);
+       }
+       else
+       {
+          playlists.setId(users.getId()+1)
+       }
+       
+       playlists.setNomePlaylist(nomePlaylist);
+       
     }
 
-    @PutMapping
+    @PutMapping(path = "/atualizarNomePlaylist")
     public void put(int id, String nome)
     {
         playlists.get(id).setNomePlaylist(nome);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/excluirPlaylist")
     public void delete(int id)
     {
         playlists.remove(id);

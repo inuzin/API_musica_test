@@ -12,7 +12,7 @@ public class UserController
 {
     List<User> users = new ArrayList<User>();
 
-    @GetMapping
+    @GetMapping(path = "/buscarUsuario")
     public User get(int id, String nome, String email, String senha)
     {
         User user = new User(id, nome, email, senha);
@@ -20,20 +20,33 @@ public class UserController
         return user;
     }
 
-    @PostMapping
-    public void post(@RequestBody int id, String nome, String email, String senha)
+    @PostMapping(path = "/criarUsuario")
+    public void post(@RequestBody String nome, String email, String senha)
     {
-
+       if(users.getId() == null)
+       {
+          users.setId(1);
+       }
+       else
+       {
+          users.setId(users.getId()+1)
+       }
+       
+       users.setEmail(email);
+       users.setNome(nome);
+       users.setSenha(senha);
+       
     }
 
-    @PutMapping
-    public void put(int id, String email, String senha)
+    @PutMapping(path = "/atualizarUsuario")
+    public void put(int id, String email, String senha, String nome)
     {
         users.get(id).setEmail(email);
         users.get(id).setSenha(senha);
+        users.get(id).setNome(nome);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/excluirUsuario")
     public void delete(int id)
     {
         users.remove(id);
