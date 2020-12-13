@@ -1,7 +1,6 @@
-package br.unifor.audioAPI.playlist;
+package br.unifor.audioAPI.Controller;
 
-import br.unifor.audioAPI.Musica;
-import br.unifor.audioAPI.User;
+import br.unifor.audioAPI.Entity.Musica.Musica;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,18 +23,20 @@ public class MusicaController
     @PostMapping(path = "/criarMusicaUsuario")
     public void post(@RequestBody String nome, String autor, String album, int ano)
     {   
-       if(musicas.getId() == null)
+       if(musicas.size() <= 0)
        {
-          musicas.setId(1);
+          //musicas.setId(1);
+           musicas.add(new Musica(0, nome, autor, album, ano));
        }
        else
        {
-          musicas.setId(users.getId()+1)
+          //musicas.setId(users.getId()+1);
+          musicas.add(new Musica(musicas.size(), nome, autor, album, ano));
        }
        
-       musicas.setNome(nome);
-       musicas.setAlbum(album);
-       musicas.setAno(ano);
+       //musicas.setNome(nome);
+       //musicas.setAlbum(album);
+       //musicas.setAno(ano);
     }
     
     @PutMapping(path = "/atualizarMusicaUsuario")

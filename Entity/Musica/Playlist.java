@@ -1,6 +1,5 @@
-package br.unifor.audioAPI;
+package br.unifor.audioAPI.Entity.Musica;
 
-import br.unifor.audioAPI.Musica;
 import java.util.ArrayList;
 import java.util.List;
 

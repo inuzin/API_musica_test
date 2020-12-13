@@ -1,26 +1,31 @@
-package br.unifor.audioAPI;
+package br.unifor.audioAPI.Entity.Cadastro;
 
+import javax.persistence.*;
+
+@Table(name = "cliente")
+@Entity
 public class User
 {
-
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String email;
     private String senha;
 
-    public int getId(int Id) { return id; }
+    public int getId() { return id; }
     
     public int setId(int Id) { return Id; }
 
-    public String getNome(String Nome) { return nome; }
+    public String getNome() { return nome; }
     
     public String setNome(String Nome) { return Nome; }
 
-    public String getEmail(String Email) { return email; }
+    public String getEmail() { return email; }
 
     public String setEmail(String Email) { return Email; }
 
-    public String getSenha(String Senha) { return senha; }
+    public String getSenha() { return senha; }
 
     public String setSenha(String Senha) { return Senha; }
 

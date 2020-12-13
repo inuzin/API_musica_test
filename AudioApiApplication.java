@@ -1,12 +1,14 @@
 package br.unifor.audioAPI;
 
-import br.unifor.audioAPI.User;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan({"com.delivery.request"})
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class AudioApiApplication {
 
 	public static void main(String[] args) { SpringApplication.run(AudioApiApplication.class, args); }

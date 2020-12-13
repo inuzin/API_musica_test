@@ -1,4 +1,4 @@
-package br.unifor.audioAPI;
+package br.unifor.audioAPI.Entity.Musica;
 
 public class Musica
 {
