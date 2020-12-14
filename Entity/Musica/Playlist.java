@@ -1,16 +1,20 @@
-package br.unifor.audioAPI;
+package br.unifor.audioAPI.Entity.Musica;
 
-import br.unifor.audioAPI.Musica;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(name = "PlaylistTable")
+@Entity
 public class Playlist
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nomePlaylist;
     private List<Musica> musicas = new ArrayList();
 
-    public String getNomePlaylist(String NomePlaylist) { return nomePlaylist; }
+    public String getNomePlaylist() { return nomePlaylist; }
     
     public String setNomePlaylist(String NomePlaylist) { return nomePlaylist; }
 

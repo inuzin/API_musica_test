@@ -1,7 +1,13 @@
-package br.unifor.audioAPI;
+package br.unifor.audioAPI.Entity.Musica;
 
+import javax.persistence.*;
+
+@Table(name = "MusicaTable")
+@Entity
 public class Musica
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String autor;
@@ -12,19 +18,19 @@ public class Musica
     
     public int setId(int Id) { return Id; }
     
-    public String getNome(String Nome) { return nome; }
+    public String getNome() { return nome; }
     
     public String setNome(String Nome) { return Nome; }
 
-    public String getAutor(String Autor) { return autor; }
+    public String getAutor() { return autor; }
 
     public String setAutor(String Autor) { return Autor; }
 
-    public String getAlbum(String Album) { return album; }
+    public String getAlbum() { return album; }
     
     public String setAlbum(String Album) { return Album; }
 
-    public int getAno(int Ano) { return ano; }
+    public int getAno() { return ano; }
     
     public int setAno(int Ano) { return Ano; }
 
@@ -36,4 +42,6 @@ public class Musica
         album = Album;
         ano = Ano;
     }
+
+
 }

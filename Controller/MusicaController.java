@@ -1,54 +1,69 @@
-package br.unifor.audioAPI.playlist;
+package br.unifor.audioAPI.Controller;
 
-import br.unifor.audioAPI.Musica;
-import br.unifor.audioAPI.User;
+import br.unifor.audioAPI.Entity.Musica.Musica;
+import br.unifor.audioAPI.Repository.MusicaRepository;
+import br.unifor.audioAPI.Service.MusicaService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/musica")
 public class MusicaController
 {
-    List<Musica> musicas = new ArrayList<Musica>();
+    private MusicaRepository musicaRepository;
 
-    @GetMapping(path = "/buscarMusica")
-    public Musica get(int id, String nome, String autor, String album, int ano)
+    private MusicaService musicaService;
+
+    @GetMapping
+    public List<Musica> getAll()
     {
-        Musica musica = new Musica(id, nome, autor, album, ano);
-
-        return musica;
+        return musicaRepository.findAll();
     }
 
-    @PostMapping(path = "/criarMusicaUsuario")
-    public void post(@RequestBody String nome, String autor, String album, int ano)
-    {   
-       if(musicas.getId() == null)
-       {
-          musicas.setId(1);
-       }
-       else
-       {
-          musicas.setId(users.getId()+1)
-       }
-       
-       musicas.setNome(nome);
-       musicas.setAlbum(album);
-       musicas.setAno(ano);
-    }
-    
-    @PutMapping(path = "/atualizarMusicaUsuario")
-    public void put(int id, String nome, String autor, String album, int ano)
+    @GetMapping("/{id}")
+    public Musica getById(@PathVariable("id") Integer id)
     {
-        musicas.get(id).setNome(nome);
-        musicas.get(id).setAlbum(album);
-        musicas.get(id).setAno(ano);
+        return musicaRepository.getOne(id);
     }
 
-    @DeleteMapping(path = "/excluirMusicaUser")
-    public void delete(int id)
+    @PostMapping
+    public ResponseEntity adicionar(@RequestBody Musica musica)
     {
-       musicas.remove(id);
+        if(musica.getNome() == null)
+        {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Musica musica_salvo = musicaRepository.save(musica);
+
+        return ResponseEntity.status(201).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity alterar(@PathVariable("id") Integer id,
+                                  @RequestBody Musica musica)
+    {
+        try
+        {
+            musicaService.atualizar(id, musica);
+            return ResponseEntity.noContent().build();
+        }
+        catch(RuntimeException exception)
+        {
+            return ResponseEntity.status(400).build();
+        }
+
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") int id)
+    {
+        musicaRepository.deleteById(id);
     }
 }
